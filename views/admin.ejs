@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/fontawesome/css/all.css">
+</head>
+
+<body>
+  <nav class="admin-nav">
+    <h1>Parameshwara</h1>
+    <a id="logout-btn" >Logout</a>
+  </nav>
+
+  <div class="admin-wrapper">
+    <div class="admin-nav-list-wrapper">
+      <ul class="admin-nav-list">
+        <li class="selected" onclick="showForm(0)">Upload Video</li>
+        <li onclick="showForm(1)">Publish Announcement</li>
+        <li onclick="showForm(2)">Site Stats</li>
+        <li onclick="showForm(3)">Change Password</li>
+        <li onclick="showForm(4)">Create New User</li>
+        <li onclick="openModal(2)">Users List</li>
+        <li onclick="openModal(3)">Admin List</li>
+        <li onclick="openModal(0)">Video List</li>
+        <li onclick="openModal(1)">Announcements</li>
+      </ul>
+    </div>
+    <div class="admin-all-forms-wrapper">
+          
+          <div class="admin-form" id="upload-video-form">
+
+              <div class="admin-subforms" id="video-forms-wrapper">
+
+                <div class="subform">
+                    <div class="input-group">
+                      <span>Video Name</span>
+                      <input type="text" id="videoName" required/>
+                      <i>Error goes here</i>
+                    </div>
+                    <div class="input-group">
+                      <span>Category</span>
+                      <input type="text" id="videoCategory" required/>
+                      <i>Error goes here</i>
+                    </div>
+                    <div class="input-group">
+                      <span>Sub Category</span>
+                      <input type="text" id="videoSubCategory" required/>
+                      <i>Error goes here</i>
+                    </div>
+                </div>
+
+                <div class="subform">
+                  <div class="input-group">
+                    <span>Description</span>
+                    <textarea id="videoDescription" required></textarea>
+                    <i>Error goes here</i>
+                  </div>
+                  <div class="input-group">
+                    <span>Video Code</span>
+                    <input type="text" id="videoCode" required/>
+                    <i>Error goes here</i>
+                  </div>
+                  <div class="input-group">
+                    <span>Upload Thumbnail (900X400)</span>
+                    <input type="file" style="display:None" id="video-thumb-file"/>
+                    <div class="my-input-file" id="video-input-styled">
+                      <div>
+                        <span>Choose your File</span>
+                        <span class="file-icon"><i class="fas fa-image"></i></span>
+                      </div>
+                    </div>
+                    <i>Error goes here</i>
+                  </div>
+                </div>
+
+              </div>
+
+              <button class="page-navigate prev" id="video-prev">
+                <i class="fas fa-arrow-left"></i>  PREV
+              </button>
+              <button class="page-navigate next final" id="upload-video-btn">
+                  UPLOAD  <i class="fas fa-file-upload"></i>
+              </button>
+              <button class="page-navigate next" id="video-next">
+                NEXT  <i class="fas fa-arrow-right"></i>
+              </button>
+
+              <div class="page-index">
+                <span class="selected"></span>
+                <span></span>
+              </div>
+
+          </div>
+
+          <div class="admin-form" id="change-password-form">
+
+            <button class="page-navigate next final" id="change-password-btn">
+                 CHANGE PASSWORD   <i class="fas fa-key"></i>
+            </button>
+
+            <div class="admin-subforms" id="change-password-form-wrapper">
+              <div class="subform">
+                <div class="input-group">
+                  <span>Current Password</span>
+                  <input type="text" required id="current-password"/>
+                  <i>Error goes here</i>
+                </div>
+                <div class="input-group">
+                  <span>New Password</span>
+                  <input type="password" required id="new-password"/>
+                  <i>Error goes here</i>
+                </div>
+                <div class="input-group">
+                  <span>Confirm</span>
+                  <input type="password" required id="confirm-password"/>
+                  <i>Error goes here</i>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="admin-form" id="banner-upload-form">
+            <button class="page-navigate next final" id="banner-upload-btn">
+              UPLOAD  <i class="fas fa-file-upload"></i>
+          </button>
+            <div class="admin-subforms">
+              <div class="subform">
+                <div class="input-group">
+                  <span>Announcement Title</span>
+                  <textarea id="banner-title" required></textarea>
+                  <i>Error goes here</i>
+                </div>
+                <div class="input-group">
+                  <span>Upload Thumbnail (900X300)</span>
+                  <input type="file" style="display:None" id="banner-file"/>
+                  <div class="my-input-file" id="banner-input-styled">
+                    <div>
+                      <span>Choose your File</span>
+                      <span class="file-icon"><i class="fas fa-image"></i></span>
+                    </div>
+                  </div>
+                  <i>Error goes here</i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-form" id="create-new-user-form">
+            <button class="page-navigate next final" id="create-new-user-btn">
+              ADD USER  <i class="fas fa-file-upload"></i>
+          </button>
+            <div class="admin-subforms">
+              <div class="subform">
+
+                <div class="input-group">
+                  <span>Name</span>
+                  <input type="text" id="new-user-name-field" required>
+                  <i>Error goes here</i>
+                </div>
+                <div class="input-group">
+                  <span>Username</span>
+                  <input type="text" id="new-user-username-field" required>
+                  <i>Error goes here</i>
+                </div>
+                <div class="input-group">
+                  <span>Password</span>
+                  <input type="password" id="new-user-password-field" required>
+                  <i>Error goes here</i>
+                </div>
+                <div class="input-group">
+                  <span>Confirm</span>
+                  <input type="password" id="new-user-conf-password-field" required>
+                  <i>Error goes here</i>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-card" id="site-stats-div">
+            <span class="top-label">Total Users</span>
+            <h1><%=totalCount%></h1>
+            <div class="bottom-stats">
+              <div class="stat">
+                <span class="top-label">Past 1 Month</span>
+                <h2>+<%=month_count%></h2>
+              </div>
+              <div class="stat">
+                <span class="top-label">Past 1 Year</span>
+                <h2>+<%=year_count%></h2>
+              </div>
+            </div>
+          </div>
+
+
+    </div>
+  </div>
+
+  <div class="modal-wrapper">
+    <div class="modal">
+      <i class="fas fa-times" onclick="closeModal()"></i>
+      <h2>Video List</h2>
+      <ul>
+      </ul>
+      <button id="load-more-users">Load More</button>
+      <button id="load-more-videos">Load More</button>
+    </div>
+  </div>
+
+
+<script defer src="/js/app.js"></script>
+<script src="/js/Element.js"></script>
+<script src="/js/form.js"></script>
+
+</body>
+
+</html> 

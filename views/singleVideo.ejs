@@ -1,0 +1,79 @@
+<%-include ("partials/html_header.ejs")%>
+    <meta property="og:title" content="<%=videos.name%>" />
+    <meta property="og:description" content="<%=videos.description%>" />
+    <meta property="og:url" content="http://localhost:5000/videos/<%=videos._id%>"/>
+    <meta property="og:image" content="http://localhost:5000/img/<%=videos.photo%>"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>     -->
+
+   <%-include ("partials/header.ejs")%> 
+   <%-include ("partials/register_form.ejs")%>
+
+  </head>
+<body>
+
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/hi_IN/sdk.js#xfbml=1&version=v11.0" nonce="saroTLAS"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+window.onload = () => {
+    console.log("in focus func");
+    // document.getElementById('mostVisitedTemplesData').scrollIntoView(true);
+    const currentUrl=((window.location.href).split('/'));
+    const id=currentUrl[3]
+    console.log(videoId);
+  }
+
+
+        $.ajax({
+          url: `/api/v1/products/${id}`,
+          type: 'get',
+          dataType: 'json',
+          contentType: 'application/json;charset=utf-8',
+          processData: false,
+          success: function (response) {
+            console.log("hello from favourites", response);
+            localStorage.setItem('data', JSON.stringify(response));
+          }})
+          
+      
+      </script>
+
+<h1 style="text-align: center;"><%=videos.name%></h1><br>
+
+
+<div class="video">
+    <%-videos.snippet%>
+</div>
+
+
+
+<!-- Your share button code -->
+<div class="share-btn-group">
+  <div class="fb-share-button" data-href="http://localhost:5000/videos/<%=videos._id%>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A5000%2Fvideos%2F604a0b73f3a608000407f432&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">शेयर करें</a></div>
+  <a href="whatsapp://send?text=Watch <%=videos.name%> now on http://localhost:5000/videos/<%=videos._id%>"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+</div>
+
+
+<script src="/js/Element.js"></script>
+<script src="/js/form.js"></script>
+<script defer src="/js/register_subscriber.js"></script>
+<%-include ("partials/footer.ejs")%>
+</body>
+</html>

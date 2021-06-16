@@ -1,0 +1,126 @@
+@use './variables' as variables;
+div.modal-wrapper{
+	width:100vw;
+	height:100%;
+	position:fixed;
+	z-index:100;
+	top:0px;
+	left:0px;
+	background-color:rgba(0,0,0,0.5);
+	display:grid;
+	font-family:variables.$main_font;
+	place-items:center;
+	&>div.modal{
+		width:500px;
+		padding:2em;
+		box-sizing: border-box;
+		background-color:white;
+		position:relative;
+		border-radius:1em;
+
+		@media only screen and (max-width:550px){
+			width:100%;
+			height:100vh;
+			font-size:0.9em;
+			padding:2em;
+			border-radius:0px;
+			overflow:auto;
+		}
+		&>i{
+			font-size:1.3em;
+			position:absolute;
+			display: inline-block;
+			top:0px;
+			padding:0.5em;
+			cursor:pointer;
+			right:0px;
+			color:variables.$fire_red;
+			@media only screen and (max-width:550px){
+				padding:1em;
+			}
+		}
+		&>h2{
+			font-weight:600;
+			overflow: hidden;
+			text-align:center;
+			position:relative;
+			padding-bottom:0.5em;
+			margin-bottom:0px;
+		}
+		&.loading{
+			&>h2::after{
+				content:"";
+				width:100%;
+				height:4px;
+				position:absolute;
+				bottom:0px;
+				left:0px;
+				background-color:variables.$bg_color;
+				animation:loading 1s ease-in-out infinite;
+			}
+			@keyframes loading{
+				from{
+					transform:translateX(-100%);
+				}
+				to{
+					transform:translateX(100%);
+				}
+			}
+		}
+		&>ul{
+			padding-left:0px;
+			height:380px;
+			overflow:auto;
+			list-style:none;
+			padding-right:1em;
+			@media only screen and (max-width:550px){
+				height:auto;
+			}
+			&>li{
+				padding:1.5em 0px;
+				border-bottom:1px solid lightgray;
+				&>span{
+					display: flex;
+					align-items:center;
+					font-size:1.2em;
+					justify-content:space-between;
+					&>i{
+						color:variables.$fire_red;
+					}
+				}
+				&>div.element-with-image{
+					&>img{
+						width:100%;
+						border-radius:0.5em;
+					}
+					&>span{
+						padding-top:0.5em;
+						font-weight:550;
+						display:flex;
+						align-items:center;
+						justify-content:space-between;
+						&>i{
+							font-size:1.5em;
+							color:#ff5600;
+							cursor:pointer;
+						}
+					}
+				}
+			}
+		}
+		&>button{
+			background-color:white;
+			display:block;
+			font-family:inherit;
+			padding:0.2em 0.5em;
+			border:0px solid black;
+			background-color:variables.$fire_red;
+			color:white;
+			font-weight:700;
+			border-radius:0.5em;
+			font-size:1.1em;
+			cursor:pointer;
+			margin:0 auto;
+		}
+	}
+}

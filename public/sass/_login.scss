@@ -1,0 +1,102 @@
+@use './variables' as variables;
+div.user-form-wrapper{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	font-family:variables.$main_font;
+	@media only screen and (max-width:940px){
+		flex-flow:column-reverse;
+	}
+	&>div.form{
+		@media only screen and (max-width:940px){
+			margin:0px 1em;
+			margin-bottom:3em ;
+		}
+		max-width:400px;
+		&>h2{
+			text-align:center;
+			font-size:1.4em;
+			font-weight:600;
+		}
+		&>div.form-div{
+			background:variables.$background_gradient;
+			border-radius:1em;
+			padding:2em;
+			padding-bottom:0px;
+			box-sizing:border-box;
+			color:white;
+			&>*{
+				position:relative;
+				z-index:1;
+			}
+			&>button{
+				margin:0 auto;
+				margin-top:1em;
+				position:relative;
+				padding:0.3em 1em;
+				font-weight:700;
+				font-family:variables.$main_font;
+				border:0px solid black;
+				font-size:1.2em;
+				color:white;
+				cursor:pointer;
+				border-radius:1em 1em 0px 0px;
+				background-color:#ff650f;
+				display:block;
+				outline:none;
+				&::after{
+					content:"";
+					position:absolute;
+					width:calc(100% + 1em);
+					height:calc(100% + 0.5em);
+					z-index:-1;
+					bottom:0px;
+					left:-0.5em;
+					background-color:variables.$bg_wrapper_color;
+					transform:scale(0);
+					transition:transform 0.2s ease-out;
+					border-radius:inherit;
+					background: rgba(255, 101, 15, 0.42);
+				}
+				&:hover::after , &:focus::after{
+					transform:scale(1);
+				}
+			}
+			&>div.input-group{
+				margin-bottom:1em;
+				
+				&>span{
+					font-size:1.2em;
+					font-weight:550;
+				}
+				&>i{
+					font-style:normal;
+					font-size:0.7em;
+					font-weight:550;
+					&.error{
+						color:variables.$fire_red;
+					}
+					&.info{
+						color:lightgray;
+					}
+				}
+				&>input{
+					display:block;
+					outline:none;
+					border-radius:2em;
+					padding:0.5em 1em;
+					font-family: inherit;
+					width:100%;
+					box-sizing:border-box;
+					font-size:1.1em;
+					font-weight:500;
+					border:0px solid black;
+					margin-top:0.3em;
+				}
+				&>input:focus{
+					box-shadow:0px 0px 10px 2px variables.$outline_color;
+				}
+			}
+		}
+	}
+}

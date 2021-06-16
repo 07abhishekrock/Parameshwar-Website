@@ -1,0 +1,17 @@
+@use './variables' as variables;
+@use './nav' as nav;
+@use './admin' as admin;
+@use './login' as login;
+@use './modal' as modal;
+@use './videoGrid' as videoGrid;
+
+body{
+	margin:0px;
+	padding:0px;
+	background-image:url('/assets/bg.png');
+	background-position: right center;
+	background-size:cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+}
+

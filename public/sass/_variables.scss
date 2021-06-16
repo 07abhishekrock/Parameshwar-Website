@@ -1,0 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+$main_font : "Poppins" , Arial , sans-serif;
+$background_gradient : linear-gradient(357.26deg, #FF984E 1.93%, #FFB800 57.17%);
+$outline_color : #ff984e;
+$bg_color:#ffb10f;
+$bg_wrapper_color: #FFB80070;
+$fire_red : #ff650f;
+
+
+@mixin background_config($size, $position, $repeat){
+	background-size:$size;
+	background-position:$position;
+	background-repeat:$repeat;
+}
+
+@mixin bg_url($url){
+	background-image:url($url);
+}
+
+

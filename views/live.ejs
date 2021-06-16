@@ -1,0 +1,33 @@
+
+<%-include ('partials/html_header.ejs')%>
+<%-include ('partials/header.ejs')%>
+	
+	  <div id="fb-root"></div>
+	  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/hi_IN/sdk.js#xfbml=1&version=v11.0" nonce="saroTLAS"></script>
+	
+	
+
+			<%-include ("partials/register_form.ejs")%>
+	
+	<h1 style="text-align: center;">Live Stream From Youtube</h1><br>
+	
+	
+	<div class="video">
+		<iframe width="80%" height="80%" src="https://www.youtube.com/embed/live_stream?channel=12345" frameborder="0" allowfullscreen></iframe>
+	</div>
+	
+
+	
+	<!-- Your share button code -->
+	<div class="share-btn-group">
+	  <div class="fb-share-button" data-href="http://localhost:5000/live" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A5000%2Fvideos%2F604a0b73f3a608000407f432&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">शेयर करें</a></div>
+	  <a href="whatsapp://send?text=Watch Live now on http://localhost:5000/live"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+	</div>
+	
+	
+
+
+	<script defer src="/js/register_subscriber.js"></script>
+	<script src="/js/Element.js"></script>
+	<script src="/js/form.js"></script>
+	<%-include ("partials/footer.ejs")%>

@@ -1,0 +1,94 @@
+body{
+    background-image: linear-gradient(#FF7C00, #FFF601, #FF7c00);;
+}
+
+
+img{
+width: 100%;}
+.navbar-brand{
+    font-size: 4rem;
+    font-weight: bolder;
+}
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+.inner_header{
+    width: 95%;
+    background-image: url('lewis-j-goetz-AwtentOgdkY-unsplash.jpg');
+    height: 70vh;
+    background-size: cover;
+    background-position: top;
+    border-radius: 50px;
+
+}
+p {
+    color: white;
+    width: fit-content;
+    border-radius: 0 50px 50px 0;
+    text-align: center;
+}
+p>a {
+    color:black;
+    font-weight:Bolder;
+}
+p>a:hover{
+    color:darkgray;
+}
+.card{
+    border-radius: 50px;
+display: flex;
+justify-content: center ;
+/* align-items: center; */
+font-size: 1.8rem;
+font-weight: 500;
+margin-bottom: 2.5rem;
+margin-right: 1rem;
+cursor: pointer;
+}
+.card1{
+    background-image: url('https://tarun-review.netlify.app/mohnish-landge-VNtfYhrxQZw-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: black;
+}
+.card2{
+    background-image: url('sonika-agarwal-Ma2OGreRjjg-unsplash (1).jpg');
+    background-size: cover;
+    background-position: center;
+}
+.card3{
+    background-image: url('https://raw.githubusercontent.com/irup-07/parmeshwar/main/WhatsApp%20Image%202021-03-11%20at%2012.33.51%20PM.jpeg');
+    background-size: cover;
+    background-position: left;
+}
+.card4{
+    background-image: url('morari_bapu_1568401941_618x347.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+@media only screen and (max-width: 768px){
+    p{
+        font-size: 1rem;
+    }
+    .card{
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+    .inner_header{
+        width: 100%;
+        border-radius: 0;
+        height: 85vh;
+        background-image: url('pexels-bhavesh-jain-3988075.jpg');
+        background-size: cover;
+    background-position: center;
+    border-radius: 0 0 50px 50px;
+
+    }
+    
+    .navbar-brand{
+        font-size: 2.5rem;
+        font-weight: bolder;
+    }
+}
