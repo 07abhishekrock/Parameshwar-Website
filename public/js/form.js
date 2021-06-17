@@ -63,7 +63,6 @@ class FormObject{
                 else resolve({error : response.data.error});
             }
             else if(response.data.status === 'success'){
-                console.log(response);
                 resolve('success');
             }
                 // resolve(response.data.status);

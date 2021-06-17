@@ -35,7 +35,7 @@ let uploadVideoFormObject = new FormObject('#upload-video-btn',[
 		index:1,
 		target_index:1,
 	}
-] , new MyElement('#video-forms-wrapper')).init()).init();
+] , new MyElement('#video-forms-wrapper')).init()).init()
 
 
 
@@ -89,6 +89,8 @@ let create_new_user_formObject = new FormObject('#create-new-user-btn',[
 	new_user_password_field,
 	new ConfirmPasswordElement('#new-user-conf-password-field','#new-user-conf-password-field+i',new_user_password_field,'',0)
 ],'/api/v1/user/signup').init()
+.addOption('customSuccessMessage','Added New User')
+.addOption('customFailureMessage','Could not add a new user, pls try again later');
 
 
 let all_forms_group = new ElementGroup([
@@ -164,7 +166,7 @@ let UserDynamicList = new DynamicListComponent(modal_list , `<li id="list-elemen
 ['_id','name','_id','email','phoneNo']
 ).addLoader(listLoader).addPaginationTrigger(load_more_users_button);
 
-let AdminDynamicList = new DynamicListComponent(modal_list,  `<li id="list-element-$$"><span>$$<i class="fas fa-trash" onclick="AdminDynamicList.deleteElementWithId('list-element-$$')"></i></span></li>`,
+let AdminDynamicList = new DynamicListComponent(modal_list,  `<li id="list-element-$$"><h3>$$<i class="fas fa-trash" onclick="AdminDynamicList.deleteElementWithId('list-element-$$')"></i></h3></li>`,
 '/api/v1/user/adminList','/api/v1/user/',
 ['_id','username','_id']
 ).addLoader(listLoader);
