@@ -159,9 +159,9 @@ let BannerDynamicList = new DynamicListComponent(modal_list,`<li id="list-elemen
 ['_id','photo','title','_id']
 ).addLoader(listLoader);
 
-let UserDynamicList = new DynamicListComponent(modal_list , `<li id="list-element-$$"><span>$$<i class="fas fa-trash" onclick="UserDynamicList.deleteElementWithId('list-element-$$')"></i></span></li>`,
+let UserDynamicList = new DynamicListComponent(modal_list , `<li id="list-element-$$"><h3>$$<i class="fas fa-trash" onclick="UserDynamicList.deleteElementWithId('list-element-$$')"></i></h3><span><i class="fas fa-envelope"></i>$$</span><span><i class="fas fa-phone"></i>$$</span></li>`,
 '/api/v1/user','/api/v1/user/',
-['_id','name','_id']
+['_id','name','_id','email','phoneNo']
 ).addLoader(listLoader).addPaginationTrigger(load_more_users_button);
 
 let AdminDynamicList = new DynamicListComponent(modal_list,  `<li id="list-element-$$"><span>$$<i class="fas fa-trash" onclick="AdminDynamicList.deleteElementWithId('list-element-$$')"></i></span></li>`,

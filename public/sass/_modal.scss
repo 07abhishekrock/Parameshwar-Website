@@ -79,7 +79,7 @@ div.modal-wrapper{
 			&>li{
 				padding:1.5em 0px;
 				border-bottom:1px solid lightgray;
-				&>span{
+				&>span,&>h3{
 					display: flex;
 					align-items:center;
 					font-size:1.2em;
@@ -87,6 +87,10 @@ div.modal-wrapper{
 					&>i{
 						color:variables.$fire_red;
 					}
+				}
+				&>span{
+					margin-bottom: 0.3em;
+					font-size:0.8em;
 				}
 				&>div.element-with-image{
 					&>img{
@@ -103,6 +107,7 @@ div.modal-wrapper{
 							font-size:1.5em;
 							color:#ff5600;
 							cursor:pointer;
+							padding-left:0.5em;
 						}
 					}
 				}
