@@ -118,6 +118,7 @@ let modal_list = new MyElement('div.modal>ul').init(true);
 let modal_div = new MyElement('div.modal').init(true);
 let modal_heading = new MyElement('div.modal>h2').init(true);
 let load_more_users_button = new MyElement('#load-more-users').init(true).dontRender();
+let load_more_queries_button = new MyElement('#load-more-queries').init(true).dontRender();
 let load_more_videos_button = new MyElement('#load-more-videos').init(true).dontRender();
 
 
@@ -139,6 +140,10 @@ async function openModal(index){
 		modal_heading.setTextValue('Admin');
 		AdminDynamicList.openDynamicList();
 	}
+	else if(index === 4){
+		modal_heading.setTextValue('Queries');
+		ContactUsDynamicList.openDynamicList();
+	}
 }
 
 function closeModal(){
@@ -147,6 +152,7 @@ function closeModal(){
 	BannerDynamicList.closeDynamicList();
 	UserDynamicList.closeDynamicList();
 	AdminDynamicList.closeDynamicList();
+	ContactUsDynamicList.closeDynamicList();
 }
 
 let listLoader = new Loader(modal_div);
@@ -161,12 +167,31 @@ let BannerDynamicList = new DynamicListComponent(modal_list,`<li id="list-elemen
 ['_id','photo','title','_id']
 ).addLoader(listLoader);
 
-let UserDynamicList = new DynamicListComponent(modal_list , `<li id="list-element-$$"><h3>$$<i class="fas fa-trash" onclick="UserDynamicList.deleteElementWithId('list-element-$$')"></i></h3><span><i class="fas fa-envelope"></i>$$</span><span><i class="fas fa-phone"></i>$$</span></li>`,
+let UserDynamicList = new DynamicListComponent(modal_list , `<li id="list-element-$$">
+<h3>$$<i class="fas fa-trash" onclick="UserDynamicList.deleteElementWithId('list-element-$$')"></i></h3>
+<span><i class="fas fa-envelope"></i>$$</span>
+<span><i class="fas fa-phone"></i>$$</span>
+<span><i class="fas fa-user-friends"></i>$$</span>
+<span><i class="fas fa-address-card"></i>$$</span>
+<span><i class="far fa-id-card"></i>$$</span>
+</li>`,
 '/api/v1/user','/api/v1/user/',
-['_id','name','_id','email','phoneNo']
+['_id','name','_id','email','phoneNo','fatherName','address','aadharNumber']
 ).addLoader(listLoader).addPaginationTrigger(load_more_users_button);
 
 let AdminDynamicList = new DynamicListComponent(modal_list,  `<li id="list-element-$$"><h3>$$<i class="fas fa-trash" onclick="AdminDynamicList.deleteElementWithId('list-element-$$')"></i></h3></li>`,
 '/api/v1/user/adminList','/api/v1/user/',
 ['_id','username','_id']
 ).addLoader(listLoader);
+
+let ContactUsDynamicList = new DynamicListComponent(modal_list , `<li id="list-element-$$">
+<h3>$$<i class="fas fa-trash" onclick="ContactUsDynamicList.deleteElementWithId('list-element-$$')"></i></h3>
+<span><i class="fas fa-envelope"></i>$$</span>
+<span><i class="fas fa-phone"></i>$$</span>
+<span><i class="fas fa-user-friends"></i>$$</span>
+<span><i class="far fa-id-card"></i>$$</span>
+<span style="flex-flow:column;align-items:center"><i class="fas fa-align-right"></i>$$</span>
+</li>`,
+'/api/v1/contact-us-queries','/api/v1/contact-us-queries/',
+['_id','name','_id','email','phoneNo','fatherName','aadharNumber','query']
+).addLoader(listLoader).addPaginationTrigger(load_more_queries_button);

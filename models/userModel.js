@@ -30,7 +30,20 @@ const UserSchema = new mongoose.Schema({
 
   email:{
 	  type:String,
+  },
+
+  fatherName:{
+	  type:String,
+  },
+
+  aadharNumber:{
+	  type:String,
+  },
+
+  address:{
+	  type:String,
   }
+
   
 });
 

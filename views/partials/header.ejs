@@ -37,6 +37,25 @@ a{
   display: none;
 }
 
+div.modal-body{
+  font-size:0.8em;
+  padding:0px 1em;
+}
+div.modal-body input , div.modal-body textarea , div.modal-body button{
+  font-size:1em;
+}
+div.modal-body small{
+  display:block;
+  text-align:right;
+}
+div.modal-body div.form-group{
+  margin:0.2em 0px;
+}
+
+div.modal-body button{
+  margin:0px auto!important;
+}
+
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
@@ -108,15 +127,26 @@ border: none;
 
       div#registerModal{
         display:block ;
-        top:2em;
+        top:0em;
         border-radius:1em;
-        padding:1em;
+      }
+
+      div#contactUsModal{
+        display:block;
+        top:0em;
+        border-radius:1em;
       }
 
       button#register-submit-btn{
         width:fit-content;
         margin:1em auto;
       }
+
+      button#contact-submit-btn{
+        width:fit-content;
+        margin:1em auto;
+      }
+
       div.form-group{
         margin:1em 0px;
       }
@@ -124,7 +154,7 @@ border: none;
         font-size:0.8em;
       }
       div.form-group>small.error{
-        color:#ff6500;
+        color:#ff6500!important;
       }
       button#modal-close-btn{
         padding:0px;
@@ -243,7 +273,8 @@ border: none;
 	  <a style="text-decoration: none padding-left 6px;color: white ;" class="p-2 " href="/videos">Videos</a>
 	  <a style="text-decoration: none padding-left 6px;color: white ;" class="p-2 " href="/live">Live</a>
 	  <a style="text-decoration: none padding-left 6px;color: white ;" class="p-2 " href="#">Upload</a>
-	  <a style="text-decoration: none padding-left 6px;color: white ;" class="p-2 " href="#"><span onclick="openModal()">Register</span></a>
+	  <a style="text-decoration: none padding-left 6px;color: white ;" class="p-2 " href="#"><span onclick="openModal(0)">Register</span></a>
+	  <a style="text-decoration: none padding-left 6px;color: white ;" class="p-2 " href="#"><span onclick="openModal(1)">Contact Us</span></a>
 
 	</nav>
 	<!-- <a class="btn btn-outline-primary" href="#">Sign up</a> -->

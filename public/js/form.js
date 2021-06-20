@@ -55,6 +55,7 @@ class FormObject{
 
     AddUserToServer = async ()=>{
         let response = await axios.post(this.form_submit_url,this.finalFormData).catch((e)=>console.error(e));
+        console.log(response);
         return new Promise((resolve, reject)=>{
             if(!response.data.status || response.data.status === 'failure'){
                 if(this.customFailureMessage){
@@ -236,9 +237,17 @@ class NonEmptyElement extends FieldWithErrorFunction{
     constructor(field_query_string , error_footer_label_string , key, pageIndex){
         super(field_query_string , error_footer_label_string , key, pageIndex);
         this.type = 'text';
+        this.options = {};
+    }
+    checkLength = ()=>{
+        if(!this.limit) return true;
+        if(this.field.getValue().length === this.limit){
+            return true;
+        }
+        return false;
     }
     returnValidityObject = ()=>{
-        if(this.field.checkInputValidity()){
+        if(this.field.checkInputValidity() && this.checkLength()){
             return [true , {
                 error_index : -1, 
                 error_string : 'no error found'
@@ -247,9 +256,13 @@ class NonEmptyElement extends FieldWithErrorFunction{
         else{
             return [false, {
                 error_index : 0,
-                error_string : 'Empty Field Value is not allowed.'
+                error_string : 'Empty or Invalid Field Value.'
             }]
         }
+    }
+    addLimit = (limit)=>{
+        this.limit = limit;
+        return this;
     }
 }
 

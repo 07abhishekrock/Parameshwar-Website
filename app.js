@@ -27,6 +27,7 @@ const authController = require('./controllers/authController');
 const viewController = require("./controllers/viewController");
 const userRouter = require("./Routes/userRoutes")
 const UserCountModel = require("./models/UserCountModel");
+const contactFormController = require("./controllers/contactFormController");
 
 const app=new express()
 
@@ -68,7 +69,9 @@ app.use('/api/v1/user',userRouter)
 // app.use("/", viewRouter);
 // app.use("/add-to-cart", viewRouter);
 
-
+app.post("/api/v1/addContactForm",contactFormController.addContactForm);
+app.get("/api/v1/contact-us-queries",contactFormController.getPaginatedQueries);
+app.delete("/api/v1/contact-us-queries/:id",contactFormController.deleteQuery);
 app.get('/videos',async (req, res, next) => {
     
   const videos = await Video.find();

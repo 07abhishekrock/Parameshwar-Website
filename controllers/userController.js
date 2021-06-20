@@ -61,7 +61,10 @@ exports.addNonAdminUser = catchAsync(async (req,res,next)=>{
 		name:req.body.name,
 		email : req.body.email,
 		phoneNo : req.body.phoneNo,
-		role:'user'
+		role:'user',
+		address:req.body.address || '',
+		aadharNumber:req.body.aadharNumber || '',
+		fatherName:req.body.fatherName || ''
 	})
 	res.status(200).json({
 		status : 'success',
