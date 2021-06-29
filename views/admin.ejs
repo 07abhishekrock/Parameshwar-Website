@@ -42,7 +42,12 @@
                     </div>
                     <div class="input-group">
                       <span>Category</span>
-                      <input type="text" id="videoCategory" required/>
+                      <div class = "radio-container" id="videoCategory">
+                        <span class="selected">Bhakti</span>
+                        <span>Bhajan</span>
+                        <span>Arti</span>
+                        <span>Live</span>
+                      </div>
                       <i>Error goes here</i>
                     </div>
                     <div class="input-group">
@@ -204,6 +209,9 @@
     <div class="modal">
       <i class="fas fa-times" onclick="closeModal()"></i>
       <h2>Video List</h2>
+      <div class="browse-tabs">
+      </div>
+      <i class="dummy-error"></i>
       <ul>
       </ul>
       <button id="load-more-users">Load More</button>

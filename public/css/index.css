@@ -342,6 +342,25 @@ div.admin-wrapper > div.admin-all-forms-wrapper > div.admin-form > div.admin-sub
   border-radius: 2em;
   cursor: pointer;
 }
+div.admin-wrapper > div.admin-all-forms-wrapper > div.admin-form > div.admin-subforms > div.subform > div.input-group > div.radio-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+div.admin-wrapper > div.admin-all-forms-wrapper > div.admin-form > div.admin-subforms > div.subform > div.input-group > div.radio-container > span {
+  border: 3px solid white;
+  padding: 0.2em 1em;
+  border-radius: 2em;
+  color: white;
+  display: inline-block;
+  margin-right: 1em;
+  margin-top: 1em;
+  cursor: pointer;
+}
+div.admin-wrapper > div.admin-all-forms-wrapper > div.admin-form > div.admin-subforms > div.subform > div.input-group > div.radio-container > span.selected {
+  background-color: white;
+  color: black;
+}
 div.admin-wrapper > div.admin-all-forms-wrapper > div.admin-form > div.admin-subforms > div.subform > div.input-group > textarea {
   border-radius: 1em;
 }
@@ -542,6 +561,20 @@ div.modal-wrapper > div.modal.loading > h2::after {
     transform: translateX(100%);
   }
 }
+div.modal-wrapper > div.modal > div.browse-tabs {
+  display: flex;
+  justify-content: space-between;
+}
+div.modal-wrapper > div.modal > div.browse-tabs > span {
+  padding: 0.2em 0.5em;
+  cursor: pointer;
+}
+div.modal-wrapper > div.modal > div.browse-tabs > span.selected {
+  border: 3px solid #ff984e;
+  border-radius: 0.3em;
+  color: #ff984e;
+  font-weight: bolder;
+}
 div.modal-wrapper > div.modal > ul {
   padding-left: 0px;
   height: 380px;
@@ -573,6 +606,8 @@ div.modal-wrapper > div.modal > ul > li > span {
 }
 div.modal-wrapper > div.modal > ul > li > div.element-with-image > img {
   width: 100%;
+  max-height: 200px;
+  object-fit: cover;
   border-radius: 0.5em;
 }
 div.modal-wrapper > div.modal > ul > li > div.element-with-image > span {

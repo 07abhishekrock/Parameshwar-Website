@@ -35,23 +35,21 @@
 </script>
 
 
+  <ul class="video-tabs">
+    <li class="selected">Bhakti</li>
+    <li>Bhajan</li>
+    <li>Arti</li>
+    <li>Live</li>
+  </ul>
+  <i></i>
 
 
 
   <div class="album">
-    <%videos.forEach((video)=>{%>
-        <div class="video-card">
-          <img src="/img/<%=video.photo%>"/>
-          <div class="video-info">
-            <h3><%=video.name.length > 40 ? video.name.slice(0,37) + '...' : video.name%></h3>
-            <div class="video-sub-info">
-              <a href="/videos/<%=video._id%>"><i class="fas fa-play-circle"></i>Play Now</a>
-              <span><%=video.category%></span>
-            </div>
-          </div>
-        </div>
-    <%})%>
   </div>
+  <button id="load-more-videos">Load More</button>
+
+
 
 </main>
 
@@ -62,6 +60,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 <script src="/js/Element.js"></script>
 <script src="/js/form.js"></script>
-<script src="/js/register_subscriber.js" defer></script>
-      
+<script src="/js/register_subscriber.js"></script>
+<script src="/js/videoPage.js"></script>
+
 <%-include ("partials/footer.ejs")%>

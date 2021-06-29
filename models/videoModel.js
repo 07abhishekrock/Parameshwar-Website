@@ -6,8 +6,6 @@ const VideoSchema = new mongoose.Schema({
     type: String,
     required: true,
     index: true,
-    // unique: [true, "Product with this Name Already Exist"],
-    // minlength: [5, "A tour must have minimum charactr 5"],
   },
 
   category: {

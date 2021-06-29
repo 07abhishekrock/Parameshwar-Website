@@ -52,9 +52,11 @@ exports.getAllVideo = catchAsync(async (req, res, next) => {
   });
 });
 
+const categories = ['Bhakti' , 'Bhajan' , 'Arti' , 'Live'];
 exports.getVideosPaginated = catchAsync(async (req , res, next)=>{
+  const category = categories[req.query.category] || 'Bhakti';
   const skip = req.query.pageIndex ? Number(req.query.pageIndex) * 5 : 0;
-  const videos = await Video.find().skip(skip).limit(5);
+  const videos = await Video.find({category:category}).skip(skip).limit(5);
   console.log(videos);
   if(!videos.length){
     return res.status(200).json({
@@ -85,10 +87,12 @@ exports.getSingleVideo = catchAsync(async (req, res, next) => {
   });
 });
 
+
+
 exports.addNewVideo = catchAsync(async (req, res, next) => {
   const newVideo = await Video.create({
     name: req.body.name,
-    category: req.body.category,
+    category: categories[req.body.category],
     subcategory: req.body.subcategory,
     codeSnippet: req.body.codeSnippet,
     description: req.body.description,
@@ -96,7 +100,6 @@ exports.addNewVideo = catchAsync(async (req, res, next) => {
     enableDisplay: req.body.enableDisplay,
     snippet:req.body.snippet,
     photo: req.file.filename,
-
   });
 //  console.log(photo.length);
   res.status(201).json({

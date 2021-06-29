@@ -14,7 +14,7 @@ let upload_video_form = new MyElement('#upload-video-form',
 
 let uploadVideoFormObject = new FormObject('#upload-video-btn',[
 	new NonEmptyElement('#videoName','#videoName+i','name',0),
-	new NonEmptyElement('#videoCategory','#videoCategory+i','category',0),
+	new RadioButton('#videoCategory','#videoCategory+i','category',0),
 	new NonEmptyElement('#videoSubCategory','#videoSubCategory+i','subcategory',0),
 	new NonEmptyElement('#videoDescription','#videoDescription+i','description',1),
 	new NonEmptyElement('#videoCode','#videoCode+i','snippet',1),
@@ -160,7 +160,24 @@ let listLoader = new Loader(modal_div);
 let VideosDynamicList = new DynamicListComponent(modal_list,`<li id="list-element-$$"><div class="element-with-image"><img src="/img/$$"/><span>$$<i class="fa fa-trash" onclick="VideosDynamicList.deleteElementWithId('list-element-$$')"></i></span></div></li>`,
 '/api/v1/videos/','/api/v1/videos/',
 ['_id','photo','name','_id']
-).addLoader(listLoader).addPaginationTrigger(load_more_videos_button);
+).addLoader(listLoader).addPaginationTrigger(load_more_videos_button).addSubOptions([
+	{
+		optionName : 'Bhakti',
+		categoryParamValue : 0
+	},
+	{
+		optionName : 'Bhajan',
+		categoryParamValue : 1
+	},
+	{
+		optionName : 'Arti',
+		categoryParamValue : 2
+	},
+	{
+		optionName : 'Live',
+		categoryParamValue : 3
+	}
+] , 'div.browse-tabs');
 
 let BannerDynamicList = new DynamicListComponent(modal_list,`<li id="list-element-$$"><div class="element-with-image"><img src="/img/$$"/><span>$$<i class="fa fa-trash" onclick="BannerDynamicList.deleteElementWithId('list-element-$$')"></i></span></div></li>`,
 '/api/v1/banners','/api/v1/banners/',

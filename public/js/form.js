@@ -21,6 +21,9 @@ class FormObject{
             if(form_child.type === 'file'){
                 form_child.output_field.setTextValue('');
             }
+            else if(form_child.type === 'radio'){
+                continue;
+            }
             else{
                 form_child.field.setTextValue('');
             }
@@ -74,7 +77,10 @@ class FormObject{
         if(this.formIsValid()){
             for(let form_child of this.form_children){
                 if(form_child.key){
-                    if(this.containsFile){
+                    if(form_child.type === 'radio'){
+                        this.finalFormData.append(form_child.key , form_child.getChoice());
+                    }
+                    else if(this.containsFile){
                         if(form_child.type === 'file'){
                             this.finalFormData.append(form_child.key,form_child.fileValue);
                         }
@@ -308,6 +314,35 @@ class FileInputElement extends FieldWithErrorFunction{
     }
 }
 
+
+class RadioButton extends FieldWithErrorFunction{
+    constructor(radio_container_query_string , error_footer_label_string , key , pageIndex , event_callback=()=>{}){
+
+        super(radio_container_query_string , error_footer_label_string , key , pageIndex);
+        this.radio_options_group = this.field.createElementGroupFromChildren({
+            specialClass : ['selected', 0]
+        }).addEventListenerOnAllChildren(function (index){
+            this.setSpecialClassIndex(index);
+            event_callback(index);
+        }) 
+        this.type = 'radio';
+
+    }
+
+    getChoice = ()=>{
+        return this.radio_options_group.getCommonAttribute('specialClassArray')[1];
+    }
+
+    returnValidityObject = ()=>{
+
+        return [true , {
+            error_index : -1,
+            error_string : 'No Error Found'
+        }];
+
+    }
+}
+
 class InPageNavigator{
     constructor(buttons=[] , pageWrapper){
 
@@ -349,6 +384,7 @@ class InPageNavigator{
 
 }
 
+
 class Loader{
     constructor(loading_element){
         this.loading_element = loading_element;
@@ -387,12 +423,71 @@ class DynamicListComponent{
 
         return this;
     }
+
+    /**
+     *
+     * add tabs to your dynamic list using this function.
+     * @param {*} options_array an array of all the tab types. For example [{optionName : 'name' , categoryParamValue : value}]
+     * @param {String} tab_div_query a query string to get the element which is to contain the tabs options.
+     * @memberof DynamicListComponent
+     */
+    addSubOptions = (options_array , tab_div_query)=>{
+        this.optionsArray = options_array;
+        //add options to div
+        this.tabDiv = new MyElement(tab_div_query);
+        this.initialiseTabs();
+        
+        return this;
+    }
+    initialiseTabs = ()=>{
+        if(this.tabDiv){
+            this.tabDiv.html(this.optionsArray.map((option , index)=>{
+                let element_str = '';
+                if(index === -1){
+                    element_str = `<span class="selected">${option.optionName}</span>`
+                }
+                else{
+                    element_str = `<span>${option.optionName}</span>`
+                }
+                return element_str;
+            }).join(''));
+    
+            let event_callback = (async function (){
+                if(this.btn_element){
+                    this.list.DOMRef.onscroll = (e)=>{
+                        if(e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight - 50){
+                            this.btn_element.toDefault();
+                        }
+                        else{
+                            this.btn_element.hide();
+                        }
+                    };
+                    this.btn_element.toDefault();
+                }
+                this.btn_element.html('Load More');
+                this.list.html('');
+                this.pageIndex = 0;
+                let data = await this.loadNextPage();
+                if(this.pageIndex !== -1){
+                    this.list.html(data)	
+                }  
+            }).bind(this);
+            this.tab_radio_grp = new RadioButton(this.tabDiv.queryString , this.tabDiv.queryString + '+i' , '' , -1 , event_callback);
+        }
+    }
     closeDynamicList = ()=>{
         if(this.btn_element){
             this.btn_element.dontRender();
             this.list.DOMRef.onscroll = ()=>{}
             this.list.html('');
             this.btn_element.setTextValue('Load More');
+            
+        }   
+        if(this.tabDiv){
+            this.tabDiv.html('');
+        }
+        if(this.tab_radio_grp){
+            this.tab_radio_grp = null;
         }
     }
     openDynamicList = async ()=>{
@@ -408,6 +503,9 @@ class DynamicListComponent{
             this.btn_element.toDefault();
         }
         this.pageIndex = 0;
+        if(this.tabDiv){
+            this.initialiseTabs();
+        }
         let data = await this.loadNextPage();
 		if(this.pageIndex !== -1){
 			this.list.html(data)	
@@ -415,7 +513,11 @@ class DynamicListComponent{
     }
     getRequestData = async ()=>{
         try{
-            let response = await axios.get(this.request_url + '?pageIndex=' + this.pageIndex);
+            let url = this.request_url + '?pageIndex=' + this.pageIndex;
+            if(this.optionsArray){
+                url = url.concat('&category='+this.tab_radio_grp.getChoice());
+            }
+            let response = await axios.get(url);
             if(response.data && response.data.status === 'success'){
                 return response.data.data;
             }

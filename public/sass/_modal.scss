@@ -67,6 +67,20 @@ div.modal-wrapper{
 				}
 			}
 		}
+		&>div.browse-tabs{
+			display:flex;
+			justify-content:space-between;
+			&>span{
+				padding:0.2em 0.5em;
+				cursor:pointer;
+				&.selected{
+					border:3px solid variables.$outline_color;
+					border-radius:0.3em;
+					color:variables.$outline_color;
+					font-weight: bolder;
+				}
+			}
+		}
 		&>ul{
 			padding-left:0px;
 			height:380px;
@@ -95,6 +109,8 @@ div.modal-wrapper{
 				&>div.element-with-image{
 					&>img{
 						width:100%;
+						max-height:200px;
+						object-fit: cover;
 						border-radius:0.5em;
 					}
 					&>span{

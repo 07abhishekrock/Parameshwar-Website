@@ -44,3 +44,4 @@ function closeModal(flag){
 	if(flag === 0) add_new_subsriber_form.dontRender();
 	else if(flag === 1) add_new_contact_form.dontRender();
 }
+

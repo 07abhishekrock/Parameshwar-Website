@@ -18,6 +18,7 @@ class MyElement{
     constructor(query_string , options={}){
         if(typeof(query_string) === 'string'){
             this.DOMRef = document.querySelector(query_string); 
+            this.queryString = query_string;
         }
         else{
             this.DOMRef = query_string;
@@ -153,6 +154,12 @@ class ElementGroup{
             this.addCommonAttribute('specialClassArray',[specialClass , new_index]);
             this.elements_array[new_index].addClass(specialClass);
         }
+    }
+    addEventListenerOnAllChildren = (handler_fn)=>{
+        this.elements_array.forEach((element , index)=>{
+            element.bindEvent(handler_fn.bind(this , index) , 'click');
+        })
+        return this;
     }
     removeClassName = (class_string)=>{
         this.elements_array.forEach((element)=>{
